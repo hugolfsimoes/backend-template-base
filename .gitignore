@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Diretório de saída do TypeScript
+dist/
+
+# Arquivos de ambiente
+.env
+
+# Logs
+logs/
+*.log
+
+# Debug
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs/Editors
+.vscode/
+.idea/
+
+# Dependências instaladas globalmente (apenas se você estiver usando NVM ou PNPM)
+.nvmrc
+.pnpm-debug.log*
+
+# Configurações temporárias do TypeScript
+*.tsbuildinfo
