@@ -5,9 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --loader ts-node/esm src/infrastructure/server.ts",
-    "dev": "nodemon --watch src --exec 'node --loader ts-node/esm src/infrastructure/server.ts'"
-  },
+  "build": "tsc",                                 
+  "start": "node dist/infrastructure/server.js",   
+  "dev": "nodemon --watch src --exec node --loader ts-node/esm src/infrastructure/server.ts",
+  "clean": "rm -rf dist"                        
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hugolfsimoes/backend-template-base.git"
