@@ -10,7 +10,7 @@ export class KnexUserRepository implements IUserRepository {
     return user ? new User(user.id, user.name, user.email, user.password) : null;
   }
 
-  async create(user: User): Promise<number> {
+  async create(user: User): Promise<User> {
     return this.db("users").insert({
       id: user.id,
       name: user.name,

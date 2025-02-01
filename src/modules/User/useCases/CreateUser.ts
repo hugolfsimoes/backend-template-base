@@ -4,7 +4,7 @@ import type { CreateUserDTO } from "../dtos/CreateUserDTO.js";
 
 export class CreateUser {
   constructor(private userRepository: IUserRepository) {}
-  async execute(data: CreateUserDTO): Promise<number> {
+  async execute(data: CreateUserDTO): Promise<Omit<User, "password">> {
     const existingUser = await this.userRepository.findByEmail(data.email);
     if (existingUser) {
       throw new Error("Email already exists");
