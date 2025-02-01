@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { TokenService } from "../services/TokenService.js";
 
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {

@@ -1,26 +1,21 @@
-import { Knex } from "knex";
-import { IUserRepository } from "../interfaces/IUserRepository.ts";
-import { User } from "../entities/User.ts";
+import type { IUserRepository } from "../interfaces/IUserRepository.js";
+import { User } from "../entities/User.js";
+import knex, { type Knex } from "knex";
 
 export class KnexUserRepository implements IUserRepository {
-  constructor(private knex: Knex) {}
-
-  async findById(id: string): Promise<User | null> {
-    const user = await this.knex("users").where({ id }).first();
-    return user ? new User(user.id, user.name, user.email, user.password) : null;
-  }
+  constructor(private db: Knex) {}
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await this.knex("users").where({ email }).first();
+    const user = await this.db("users").where({ email }).first();
     return user ? new User(user.id, user.name, user.email, user.password) : null;
   }
 
-  async create(user: User): Promise<void> {
-    await this.knex("users").insert({
+  async create(user: User): Promise<number> {
+    return this.db("users").insert({
       id: user.id,
       name: user.name,
       email: user.email,
       password: user.password,
-    });
+    }).returning('id');
   }
 }

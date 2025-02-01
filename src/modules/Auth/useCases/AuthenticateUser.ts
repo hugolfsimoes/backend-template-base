@@ -1,4 +1,4 @@
-import { IUserRepository } from "../../User/interfaces/IUserRepository.js";
+import type { IUserRepository } from "../../User/interfaces/IUserRepository.js";
 import { TokenService } from "../services/TokenService.js";
 import bcrypt from "bcryptjs";
 

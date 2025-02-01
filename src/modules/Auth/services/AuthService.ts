@@ -1,6 +1,6 @@
 import { AuthenticateUser } from "../useCases/AuthenticateUser.js";
 import { KnexUserRepository } from "../../User/repositories/KnexUserRepository.js";
-import knex from "../../../infrastructure/database/knexInstance.ts";
+import knex from "../../../infrastructure/database/knexInstance.js";
 
 export class AuthService {
   static async login(email: string, password: string): Promise<string> {

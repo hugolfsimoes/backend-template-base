@@ -1,12 +1,12 @@
-import { RegisterUser } from "../useCases/RegisterUser.ts";
-import { KnexUserRepository } from "../repositories/KnexUserRepository.ts";
-import knex from "../../../infrastructure/database/knexInstance.ts";
+import { CreateUser } from "../useCases/CreateUser.js";
+import type { CreateUserDTO } from "../dtos/CreateUserDTO.js";
+import { KnexUserRepository } from "../repositories/KnexUserRepository.js";
+import { Knex } from "knex";
 
-export class UserService {
-  private userRepository = new KnexUserRepository(knex);
-
-  async registerUser(name: string, email: string, password: string) {
-    const registerUser = new RegisterUser(this.userRepository);
-    return await registerUser.execute(name, email, password);
+export class userService {
+  static async create(data: CreateUserDTO, trx: Knex.Transaction) {
+    const userRepository = new KnexUserRepository(trx);
+    const createUser = new CreateUser(userRepository);
+    return await createUser.execute(data);
   }
 }
