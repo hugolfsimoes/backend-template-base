@@ -3,12 +3,12 @@ import { KnexUserRepository } from "../../User/repositories/KnexUserRepository.j
 import knex from "../../../infrastructure/database/knexInstance.js";
 
 export class AuthService {
-  static async login(email: string, password: string): Promise<string> {
+  static async login(email: string, password: string): Promise<{ user: any; token: string; }> {
 
     const userRepository = new KnexUserRepository(knex);
 
 
     const authenticateUser = new LoginUseCase(userRepository);
-    return await authenticateUser.execute({ email, password });
+    return await authenticateUser.execute(email, password);
   }
 }
