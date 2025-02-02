@@ -1,4 +1,4 @@
-import { AuthenticateUser } from "../useCases/AuthenticateUser.js";
+import { LoginUseCase } from "../useCases/LoginUseCase.js";
 import { KnexUserRepository } from "../../User/repositories/KnexUserRepository.js";
 import knex from "../../../infrastructure/database/knexInstance.js";
 
@@ -8,7 +8,7 @@ export class AuthService {
     const userRepository = new KnexUserRepository(knex);
 
 
-    const authenticateUser = new AuthenticateUser(userRepository);
-    return await authenticateUser.execute(email, password);
+    const authenticateUser = new LoginUseCase(userRepository);
+    return await authenticateUser.execute({ email, password });
   }
 }

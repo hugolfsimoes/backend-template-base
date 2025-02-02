@@ -11,11 +11,13 @@ export class KnexUserRepository implements IUserRepository {
   }
 
   async create(user: User): Promise<User> {
-    return this.db("users").insert({
+    const [ result ] = await this.db("users").insert({
       id: user.id,
       name: user.name,
       email: user.email,
       password: user.password,
-    }).returning('id');
+    }).returning('*');
+
+    return result;
   }
 }
